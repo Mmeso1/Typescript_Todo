@@ -52,11 +52,37 @@ class TodoList {
   listTodos(): TodoItem[] {
     if (this.todos.length === 0) {
       console.log("No tasks found");
+      return []; //if there is no task, return an empty array
     }
     return this.todos;
   }
 
   filterCompletedTodos(): TodoItem[] {
+    if (this.todos.length === 0) {
+      console.log("No tasks found");
+      return []; //if there is no task, return an empty array
+    }
     return this.todos.filter((todo) => todo.completed === true);
   }
+
+  clearCompletedTodos(): void {
+    const completedTodos = this.filterCompletedTodos();
+
+    if (completedTodos.length > 0) {
+      completedTodos.forEach((todo) => {
+        console.log("Removing task: ", todo);
+      });
+    }
+  }
 }
+
+const todoList = new TodoList();
+todoList.addTodo("Buy milk");
+todoList.addTodo("Buy eggs");
+todoList.addTodo("Buy bread");
+todoList.addTodo("Buy butter");
+todoList.completeTodo(1);
+todoList.completeTodo(2);
+todoList.clearCompletedTodos();
+console.log();
+console.log(todoList.listTodos());
