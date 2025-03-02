@@ -4,13 +4,15 @@ class TodoList {
         this.todos = []; //I want to initialize a new array evrytime a new instance of TodoList is created
         this.todoId = 1; //I want to initialize a new id everytime a new instance of TodoList is created
     }
-    addTodo(task) {
+    addTodo(task, dueDate) {
         if (task) {
             this.todos.push({
                 id: this.todoId++,
                 text: task,
                 completed: false,
+                dueDate: dueDate ? dueDate : "not set",
             });
+            console.log(`Added task: ${task}\n`);
         }
         else {
             console.log("Task cannot be empty");
@@ -21,6 +23,7 @@ class TodoList {
         if (todoItem) {
             if ((todoItem === null || todoItem === void 0 ? void 0 : todoItem.completed) === false) {
                 todoItem.completed = true;
+                console.log(`Task ${todoItem.text} completed`);
             }
             else {
                 console.log("Task already completed");
@@ -34,6 +37,7 @@ class TodoList {
         const todoItem = this.todos.find((todo) => todo.id === id);
         if (todoItem) {
             this.todos.splice(this.todos.indexOf(todoItem), 1);
+            console.log(`Task ${todoItem.text} removed`);
         }
         else {
             console.log("Task not found");
@@ -65,8 +69,8 @@ class TodoList {
 }
 const todoList = new TodoList();
 todoList.addTodo("Buy milk");
-todoList.addTodo("Buy eggs");
-todoList.addTodo("Buy bread");
+todoList.addTodo("Buy eggs", "On March 3rd");
+todoList.addTodo("Buy bread", "04/05/25");
 todoList.addTodo("Buy butter");
 console.log();
 console.log(todoList.listTodos());

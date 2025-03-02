@@ -2,6 +2,7 @@ interface TodoItem {
   id: number;
   text: string;
   completed: boolean;
+  dueDate?: string;
 }
 
 class TodoList {
@@ -13,12 +14,13 @@ class TodoList {
     this.todoId = 1; //I want to initialize a new id everytime a new instance of TodoList is created
   }
 
-  addTodo(task: string): void {
+  addTodo(task: string, dueDate?: string): void {
     if (task) {
       this.todos.push({
         id: this.todoId++,
         text: task,
         completed: false,
+        dueDate: dueDate ? dueDate : "not set",
       });
       console.log(`Added task: ${task}\n`);
     } else {
@@ -82,8 +84,8 @@ class TodoList {
 
 const todoList = new TodoList();
 todoList.addTodo("Buy milk");
-todoList.addTodo("Buy eggs");
-todoList.addTodo("Buy bread");
+todoList.addTodo("Buy eggs", "On March 3rd");
+todoList.addTodo("Buy bread", "04/05/25");
 todoList.addTodo("Buy butter");
 console.log();
 console.log(todoList.listTodos());
