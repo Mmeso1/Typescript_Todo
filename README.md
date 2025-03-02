@@ -1,16 +1,16 @@
 # Typescript_Todo
 
-This is a Learnable task that uses Typescript to implement a Todo list application
+This is a Learnable task that uses Typescript to implement a Todo list application. This project was created to practice object-oriented programming in Typescript.
 
 ## To run the file:
 
 1. First compile the todo.tsx file by running
 
 ```bash
-tsc
+tsc todo.tsx
 ```
 
-2. After then, confirm you have a version of node abover 14 by running
+2. Confirm you have a version of node abover 14 by running
 
 ```bash
 node -v
@@ -21,6 +21,8 @@ node -v
 ```bash
 node todo.js
 ```
+
+4. You can change the compiler options by editing the tsconfig.json file.
 
 ## Tips
 
@@ -36,6 +38,8 @@ for example:
 04/05/2025
 ```
 
+**Note:** This is a basic date format validation. For a real-world application, consider using ISO 8601 (YYYY-MM-DD) or a date picker in the UI. Also, the year must be four digits.
+
 - dueDate is an optional paramter, so you must not include it when creating a new list. But if not included, the value will be set to not set.
   Also, if an incorrect format is entered which is checked using regex, the value will be set to incorrect date format.
   Do not worry, you can fix this by editing the task using the editTodo function by entering the id of the task, the task and dueDate.
@@ -46,17 +50,17 @@ for example:
 
 Although the function names represent clearly what they are meant for, this is a guide:
 
-- addTodo(task: string, dueDate?: string):
+- ### addTodo(task: string, dueDate?: string):
   This is used to add a new todo item to the Todo class. The arguments are task which is compulsory, dueDate is optional.
-- completeTodo(id: number):
+- ### completeTodo(id: number):
   This is used to mark a task as completed. The argument is the id of the task you want to mark as completed. It sets its value from false to true.
-- removeTodo(id: number):
+- ### removeTodo(id: number):
   This is used to remove a todo item from the todo list. Its argument is the id of the task you want to remove.
-- editTodo(id: number, task: string, dueDate?: string):
+- ### editTodo(id: number, task: string, dueDate?: string):
   This is used to edit a particular task. Its arguments are the id which is compulsory, the task you want to edit which is also compulsory and then the dueDate which is optional.
-- listTodos():
+- ### listTodos():
   This is used to list all the todo items in the todo list. It does not take any argument.
-- filterCompletedTodos():
+- ### filterCompletedTodos():
   This is used to filter the completed tasks that their value is true. It does not take any argument.
-- clearCompletedTodos():
+- ### clearCompletedTodos():
   This is used to clear all the completed todo items from the todo list.
