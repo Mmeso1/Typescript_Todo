@@ -15,12 +15,26 @@ class TodoList {
   }
 
   addTodo(task: string, dueDate?: string): void {
+    if (!task) {
+      console.log("Task cannot be empty");
+      return;
+    }
+
     if (task) {
+      let validDate = dueDate;
+      if (dueDate) {
+        //very basic check of a date format.
+        const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+        if (!dateRegex.test(dueDate)) {
+          validDate = "invalid date format";
+        }
+      }
+
       this.todos.push({
         id: this.todoId++,
         text: task,
         completed: false,
-        dueDate: dueDate ? dueDate : "not set",
+        dueDate: validDate ? validDate : "not set",
       });
       console.log(`Added task: ${task}\n`);
     } else {
@@ -29,6 +43,10 @@ class TodoList {
   }
 
   completeTodo(id: number): void {
+    if (!id) {
+      console.log("Task id cannot be empty");
+      return;
+    }
     const todoItem = this.todos.find((todo) => todo.id === id);
 
     if (todoItem) {
@@ -44,11 +62,37 @@ class TodoList {
   }
 
   removeTodo(id: number): void {
+    if (!id) {
+      console.log("Task id cannot be empty");
+      return;
+    }
     const todoItem = this.todos.find((todo) => todo.id === id);
 
     if (todoItem) {
       this.todos.splice(this.todos.indexOf(todoItem), 1);
       console.log(`Task ${todoItem.text} removed`);
+    } else {
+      console.log("Task not found");
+    }
+  }
+
+  editTodo(id: number, task: string, dueDate?: string): void {
+    if (!id) {
+      console.log("Task id cannot be empty");
+      return;
+    }
+    const todoItem = this.todos.find((todo) => todo.id === id);
+    if (todoItem) {
+      todoItem.text = task;
+      if (dueDate) {
+        //very basic check of a date format.
+        const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+        if (!dateRegex.test(dueDate)) {
+          todoItem.dueDate = "invalid date format";
+        }
+        todoItem.dueDate = dueDate;
+      }
+      console.log(`Task edited successfully}`);
     } else {
       console.log("Task not found");
     }
@@ -85,7 +129,7 @@ class TodoList {
 const todoList = new TodoList();
 todoList.addTodo("Buy milk");
 todoList.addTodo("Buy eggs", "On March 3rd");
-todoList.addTodo("Buy bread", "04/05/25");
+todoList.addTodo("Buy bread", "04/05/2025");
 todoList.addTodo("Buy butter");
 console.log();
 console.log(todoList.listTodos());
@@ -96,5 +140,8 @@ console.log();
 console.log(todoList.listTodos());
 todoList.addTodo("Buy cheese");
 todoList.addTodo("Buy yogurt");
+console.log();
+console.log(todoList.listTodos());
+todoList.editTodo(3, "Buy cheese");
 console.log();
 console.log(todoList.listTodos());
