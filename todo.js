@@ -58,6 +58,7 @@ class TodoList {
         if (completedTodos.length > 0) {
             completedTodos.forEach((todo) => {
                 console.log("Removing task: ", todo);
+                this.todos.splice(this.todos.indexOf(todo), 1);
             });
         }
     }
@@ -67,8 +68,14 @@ todoList.addTodo("Buy milk");
 todoList.addTodo("Buy eggs");
 todoList.addTodo("Buy bread");
 todoList.addTodo("Buy butter");
+console.log();
+console.log(todoList.listTodos());
 todoList.completeTodo(1);
 todoList.completeTodo(2);
 todoList.clearCompletedTodos();
+console.log();
+console.log(todoList.listTodos());
+todoList.addTodo("Buy cheese");
+todoList.addTodo("Buy yogurt");
 console.log();
 console.log(todoList.listTodos());

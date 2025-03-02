@@ -20,6 +20,7 @@ class TodoList {
         text: task,
         completed: false,
       });
+      console.log(`Added task: ${task}\n`);
     } else {
       console.log("Task cannot be empty");
     }
@@ -31,6 +32,7 @@ class TodoList {
     if (todoItem) {
       if (todoItem?.completed === false) {
         todoItem.completed = true;
+        console.log(`Task ${todoItem.text} completed`);
       } else {
         console.log("Task already completed");
       }
@@ -44,6 +46,7 @@ class TodoList {
 
     if (todoItem) {
       this.todos.splice(this.todos.indexOf(todoItem), 1);
+      console.log(`Task ${todoItem.text} removed`);
     } else {
       console.log("Task not found");
     }
@@ -71,6 +74,7 @@ class TodoList {
     if (completedTodos.length > 0) {
       completedTodos.forEach((todo) => {
         console.log("Removing task: ", todo);
+        this.todos.splice(this.todos.indexOf(todo), 1);
       });
     }
   }
@@ -81,8 +85,14 @@ todoList.addTodo("Buy milk");
 todoList.addTodo("Buy eggs");
 todoList.addTodo("Buy bread");
 todoList.addTodo("Buy butter");
+console.log();
+console.log(todoList.listTodos());
 todoList.completeTodo(1);
 todoList.completeTodo(2);
 todoList.clearCompletedTodos();
+console.log();
+console.log(todoList.listTodos());
+todoList.addTodo("Buy cheese");
+todoList.addTodo("Buy yogurt");
 console.log();
 console.log(todoList.listTodos());
